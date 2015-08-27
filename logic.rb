@@ -39,8 +39,8 @@ def generate_question
     "What does #{num1} times #{num2} equal?"
   when 4
     # Division
-    @actual_answer = (num1 / num2).round(1)
-    "What does #{num1} divided by #{num2} equal (use one decimal place if needed)?"
+    @actual_answer = num1 / num2
+    "What does #{num1} divided by #{num2} equal (rounded to the nearest integer)?"
   end
 end
 
@@ -51,7 +51,6 @@ def verify_answer(answer)
 end
 
 def next_turn
-  generate_question
   if @actual_player == 1
     @actual_player = 2
   else
