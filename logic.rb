@@ -49,3 +49,12 @@ def verify_answer(answer)
   @players[@actual_player - 1][:lives] -= @actual_answer == answer ? 0 : 1
   @actual_answer == answer
 end
+
+def next_turn
+  generate_question
+  if @actual_player == 1
+    @actual_player = 2
+  else
+    @actual_player = 1
+  end
+end
