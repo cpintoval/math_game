@@ -57,3 +57,18 @@ def next_turn
     @actual_player = 1
   end
 end
+
+def get_loser
+  if @players[0][:lives] == 0
+    @players[0][:name]
+  elsif @players[0][:lives] == 0
+    @players[0][:name]
+  else
+    "No loser yet"
+  end  
+end
+
+def restart_lives
+  @players[0][:lives] = 3
+  @players[1][:lives] = 3
+end
