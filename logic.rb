@@ -1,21 +1,8 @@
 # This file contains the actual logic of the Math Game
-
+require './player'
 
 # Initializing player's lives
-@players = [
-  {
-    id: 1,
-    name: "Player 1",
-    lives: 3,
-    score: 0
-  },
-  {
-    id: 2,
-    name: "Player 2",
-    lives: 3,
-    score: 0
-  }
-]
+@players = [ Player.new("Player 1", 1), Player.new("Player 2", 2)]
 @actual_question = ""
 @actual_answer = nil
 @actual_player = 1
@@ -45,8 +32,8 @@ def generate_question
 end
 
 def verify_answer(answer)
-  @players[@actual_player - 1][:score] += @actual_answer == answer ? 1 : 0
-  @players[@actual_player - 1][:lives] -= @actual_answer == answer ? 0 : 1
+  @players[@actual_player - 1].score += @actual_answer == answer ? 1 : 0
+  @players[@actual_player - 1].lives -= @actual_answer == answer ? 0 : 1
   @actual_answer == answer
 end
 
@@ -59,16 +46,16 @@ def next_turn
 end
 
 def get_loser
-  if @players[0][:lives] == 0
-    @players[0][:name]
-  elsif @players[0][:lives] == 0
-    @players[0][:name]
+  if @players[0].lives == 0
+    @players[0].name
+  elsif @players[1].lives == 0
+    @players[1].name
   else
     "No loser yet"
   end  
 end
 
 def restart_lives
-  @players[0][:lives] = 3
-  @players[1][:lives] = 3
+  @players[0].lives = 3
+  @players[1].lives = 3
 end
