@@ -32,9 +32,13 @@ def generate_question
 end
 
 def verify_answer(answer)
-  @players[@actual_player - 1].score += @actual_answer == answer ? 1 : 0
-  @players[@actual_player - 1].lives -= @actual_answer == answer ? 0 : 1
-  @actual_answer == answer
+  output = @actual_answer == answer
+  if output
+    @players[@actual_player - 1].gain_point
+  else
+    @players[@actual_player - 1].lose_life
+  end
+  output
 end
 
 def next_turn
